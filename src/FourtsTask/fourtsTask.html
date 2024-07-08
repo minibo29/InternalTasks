@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, tr, td{
+            border: solid 1px
+        }
+    </style>
+</head>
+<body>
+    <h4>Url prefix: "api"</h4>
+    <h2>Product</h2>
+    <table>
+        <tr>
+            <td>url</td>
+            <td>payload</td>
+            <td>response</td>
+        </tr>
+        <tr>
+            <td>GET: product/</td>
+            <td>
+                Filter:
+                ?
+                name=""
+                productTypeId=12:
+                countryId=27:
+                harvestedDate="Y-m-d":
+                limit=0:
+                offset=25:
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": [{
+                        id: 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        sellerID: 899,
+                        creator: "Delicious bananas LTD"
+                        countryId: 27,
+                        country: {
+                            id: 27,
+                            name: "Costa Rica"
+                        }
+                        weight: 1500,
+                        harvestedDate: "Y-m-d",
+                        createdAt: "Y-m-d H:i:s",
+                        updateAt: "Y-m-d H:i:s",
+
+                    }, ...],
+                    "code": 200
+                },
+                {
+                    "message": "Content not found",
+                    "code": 204
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>GET: product/my</td>
+            <td>
+                Filter:
+                ?
+                name=""
+                productTypeId=12:
+                countryId=27:
+                harvestedDate="Y-m-d":
+                limit=0:
+                offset=25:
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": [{
+                        id: 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        sellerID: 899,
+                        creator: "Delicious bananas LTD"
+                        countryId: 27,
+                        country: {
+                            id: 27,
+                            name: "Costa Rica"
+                        }
+                        weight: 1500,
+                        harvestedDate: "Y-m-d",
+                        createdAt: "Y-m-d H:i:s",
+                        updateAt: "Y-m-d H:i:s",
+
+                    }, ...],
+                    "code": 200
+                },
+                {
+                    "message": "Content not found",
+                    "code": 204
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>GET: product/{id}</td>
+            <td>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": {
+                        id: 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        sellerID: 899,
+                        creator: "Delicious bananas LTD"
+                        countryId: 27,
+                        country: {
+                            id: 27,
+                            name: "Costa Rica"
+                        }
+                        weight: 1500,
+                        harvestedDate: "Y-m-d",
+                        createdAt: "Y-m-d H:i:s",
+                        updateAt: "Y-m-d H:i:s",
+
+                    },
+                    "code": 200
+                },
+                {
+                    "message": "Not found",
+                    "code": 404
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>POST: product/</td>
+            <td>
+                <pre>
+                {
+                    "title": ""
+                    "productTypeId": "productTypeId",  //Red Dacca (parentType Banana(productTypeId: 12(for example)))
+                    "countryId": "countryId",  //Costa Rica
+                    "harvestedDate": "Y-m-d",
+                    "weight": "1500",
+                    "sellerID": 899, // only for Admin ROLE, by default it is Creator Id
+                }
+
+                //CreatorID gets From session
+                </pre>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": {
+                        id: 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        sellerID: 899,
+                        creator: "Delicious bananas LTD"
+                        countryId: 27,
+                        country: {
+                            id: 27,
+                            name: "Costa Rica"
+                        }
+                        weight: 1500,
+                        harvestedDate: "Y-m-d",
+                        createdAt: "Y-m-d H:i:s",
+                        updateAt: "Y-m-d H:i:s",
+
+                    },
+                    "code": 201
+                },
+                {
+                    "message": "From Error"
+                    "code": 400
+                }
+                {
+                    "message": "Access denied"
+                    "code": 403
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>PUT/PATCH: product/{id}</td>
+            <td>
+                <pre>
+                {
+                    "productTypeId": "productTypeId",  //Red Dacca (parentType Banana(productTypeId: 12(for example)))
+                    "countryId": "countryId",  //Costa Rica
+                    "harvestedDate": "Y-m-d",
+                    "weight": "500",
+                    "sellerID": 899, // only for Admin ROLE, by default it is Creator Id
+                }
+                </pre>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": {
+                        id: 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        sellerID: 899,
+                        creator: "Delicious bananas LTD"
+                        countryId: 27,
+                        country: {
+                            id: 27,
+                            name: "Costa Rica"
+                        }
+                        weight: 1500,
+                        harvestedDate: "Y-m-d",
+                        createdAt: "Y-m-d H:i:s",
+                        updateAt: "Y-m-d H:i:s",
+                    },
+                    "code": 200
+                },
+                {
+                    "message": "From Error"
+                    "code": 400
+                },
+                {
+                    "message": "Access denied"
+                    "code": 403
+                },
+                {
+                    "message": "Not Found"
+                    "code": 404
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>DELETE: product/{id}</td>
+            <td>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": "deleted",
+                    "code": 204
+                },
+                {
+                    "message": "Access denied"
+                    "code": 403
+                },
+                {
+                    "message": "Not Found"
+                    "code": 404
+                }
+                </pre>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Auction</h2>
+    <table>
+        <tr>
+            <td>url</td>
+            <td>payload</td>
+            <td>response</td>
+        </tr>
+        <tr>
+            <td>GET: auction/</td>
+            <td>
+                Filter: .....
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": [{
+                        "id": 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        "productId": ""
+                        "product": {
+                            ......
+                        }
+                        "startAt" : "Y-m-d H:i:s"
+                        "endAt" : "Y-m-d H:i:s"
+                        "sellerID": 899,
+                        "seller": "Delicious bananas LTD",
+                        "creatorID": 899,
+                        "creator": "Delicious bananas LTD"
+                        "auctionStatusId": 3 //
+                        "auctionStatus": "Not active"
+                        "initialPrice": 1.2
+                        "soldPrice": 1.72
+                        "createdAt": "Y-m-d H:i:s",
+                        "updateAt": "Y-m-d H:i:s",
+                    },...],
+                    "code": 200
+                },
+                {
+                    "message": "Content not found",
+                    "code": 204
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>GET: auction/my-lots</td>
+            <td>
+                Filter:
+                ?
+                name=""
+                productTypeId=12:
+                countryId=27:
+                harvestedDate="Y-m-d":
+                limit=0:
+                offset=25:
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": [{
+                        "id": 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        "productId": ""
+                        "product": {
+                            ......
+                        }
+                        "startAt" : "Y-m-d H:i:s"
+                        "endAt" : "Y-m-d H:i:s"
+                        "sellerID": 899,
+                        "seller": "Delicious bananas LTD",
+                        "creatorID": 899,
+                        "creator": "Delicious bananas LTD"
+                        "auctionStatusId": 3 //
+                        "auctionStatus": "Not active"
+                        "initialPrice": 1.2
+                        "soldPrice": 1.72
+                        "createdAt": "Y-m-d H:i:s",
+                        "updateAt": "Y-m-d H:i:s",
+                    },...],
+                    "code": 200
+                },
+                {
+                    "message": "Content not found",
+                    "code": 204
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>GET: auction/lots/{id}</td>
+            <td>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": {
+                        "id": 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        "productId": ""
+                        "product": {
+                            ......
+                        }
+                        "startAt" : "Y-m-d H:i:s"
+                        "endAt" : "Y-m-d H:i:s"
+                        "sellerID": 899,
+                        "seller": "Delicious bananas LTD",
+                        "creatorID": 899,
+                        "creator": "Delicious bananas LTD"
+                        "auctionStatusId": 3 //
+                        "auctionStatus": "Not active"
+                        "initialPrice": 1.2
+                        "buyByPrice": 1.92
+                        "createdAt": "Y-m-d H:i:s",
+                        "updateAt": "Y-m-d H:i:s",
+                    },
+                    "code": 200
+                },
+                {
+                    "message": "Not found",
+                    "code": 404
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>GET: auction/lots/{id}/price</td>
+            <td>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": {
+                        "id": 432226, // in some case may be batter create by UUID
+                        "productId": "634623",
+                        "product": { ...},
+                        "buyerId" : 542,
+                        "buyer" : { ... },
+                        "price" : 1.22,
+                        "createdAt": "Y-m-d H:i:s",
+                        "updateAt": "Y-m-d H:i:s",
+                    },
+                    "code": 200
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>POST: auction/lots/{id}/price</td>
+            <td>
+                <pre>
+                {
+                    price: 1.22
+                }
+                </pre>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": {
+                        "id": 432226, // in some case may be batter create by UUID
+                        "productId": "634623",
+                        "product": { ...},
+                        "buyerId" : 542,
+                        "buyer" : { ... },
+                        "price" : 1.22,
+                        "createdAt": "Y-m-d H:i:s",
+                        "updateAt": "Y-m-d H:i:s",
+                    },
+                    "code": 201
+                },
+                {
+                    "message": "Form error/ Price not actual.",
+                    "code": 400
+                },
+                {
+                    "message": "Access Denied",
+                    "code": 403
+                },
+                {
+                    "message": "Not found",
+                    "code": 404
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>GET: auction/lots/{id}/history</td>
+            <td>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": [{
+                        "id": 432226 // in some case may be batter create by UUID
+                        "productId": "634623"
+                        "product": {
+                            ......
+                        }
+                        "buyerId" : 542
+                        "buyer" : { ... }
+                        "price" : 1.22
+                        "createdAt": "Y-m-d H:i:s",
+                        "updateAt": "Y-m-d H:i:s",
+                    }],
+                    "code": 200
+                },
+                {
+                    "message": "Access Denied",
+                    "code": 403
+                }
+                {
+                    "message": "Not found",
+                    "code": 404
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>POST: auction/lots/</td>
+            <td>
+                <pre>
+                {
+                    "title": ""
+                    "productId": ""
+                    "startAt" : "Y-m-d H:i:s"
+                    "endAt" : "Y-m-d H:i:s"
+                    "sellerID": 899, // only for Admin ROLE, by default it is Creator Id
+
+                    "initialPrice": 1.2
+                    "buyByPrice": 1.92
+                }
+
+                //CreatorID/sellerID gets From session
+                </pre>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": {
+                        "id": 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        "productId": ""
+                        "product": {
+                            ......
+                        }
+                        "startAt" : "Y-m-d H:i:s"
+                        "endAt" : "Y-m-d H:i:s"
+                        "sellerID": 899,
+                        "seller": "Delicious bananas LTD",
+                        "creatorID": 899,
+                        "creator": "Delicious bananas LTD"
+                        "auctionStatusId": 3
+                        "auctionStatus": "Not active"
+                        "initialPrice": 1.2
+                        "buyByPrice": 1.92
+                        "createdAt": "Y-m-d H:i:s",
+                        "updateAt": "Y-m-d H:i:s",
+                    },
+                    "code": 201
+                },
+                {
+                    "message": "From Error"
+                    "code": 400
+                }
+                {
+                    "message": "Access denied"
+                    "code": 403
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>PUT/PATCH: auction/lots/{id}</td>
+            <td>
+                <pre>
+                {
+                    "title": ""
+                    "productId": ""
+                    "startAt" : "Y-m-d H:i:s"
+                    "endAt" : "Y-m-d H:i:s"
+                    "sellerID": 899, // only for Admin ROLE, by default it is Creator Id
+                    "auctionStatusId": 2
+                    "initialPrice": 1.2
+                    "buyByPrice": 1.92
+                }
+                </pre>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": {
+                        "id": 432226 // in some case may be batter create by UUID
+                        "title": ""
+                        "productId": ""
+                        "product": {
+                        ......
+                        }
+                        "startAt" : "Y-m-d H:i:s"
+                        "endAt" : "Y-m-d H:i:s"
+                        "sellerID": 899,
+                        "seller": "Delicious bananas LTD",
+                        "creatorID": 899,
+                        "creator": "Delicious bananas LTD"
+                        "auctionStatusId": 3
+                        "auctionStatus": "Not active"
+                        "initialPrice": 1.2
+                        "buyByPrice": 1.92
+                        "createdAt": "Y-m-d H:i:s",
+                        "updateAt": "Y-m-d H:i:s",
+                    },
+                    "code": 200
+                },
+                {
+                    "message": "From Error"
+                    "code": 400
+                },
+                {
+                    "message": "Access denied"
+                    "code": 403
+                },
+                {
+                    "message": "Not Found"
+                    "code": 404
+                }
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>DELETE: auction/lots/{id}</td>
+            <td>
+            </td>
+            <td>
+                <pre>
+                {
+                    "message": "deleted",
+                    "code": 204
+                },
+                {
+                    "message": "Access denied"
+                    "code": 403
+                },
+                {
+                    "message": "Not Found"
+                    "code": 404
+                }
+                </pre>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
